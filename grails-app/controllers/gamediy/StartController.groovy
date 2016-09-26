@@ -13,7 +13,7 @@ class StartController {
     }
 
     def boss() {
-        def boss = baseRoleService.getBaseRoleByName("boss${params.id}")
+        def boss = battleRoleService.getBattleRoleByName("boss${params.id}")
         def result = ["boss": boss, "user": session.getAttribute("role")]
         render result as JSON
     }

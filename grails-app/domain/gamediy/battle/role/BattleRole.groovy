@@ -24,6 +24,8 @@ class BattleRole {
 
     BattleRole(BaseRole role) {
         userName = role.userName
+        type = role.type
+
         level = role.level
         physical = role.physical
         power = role.power

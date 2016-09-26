@@ -12,4 +12,9 @@ class BattleRoleService {
         def baseRole = baseRoleService.createNewBasePlayer(userName)
         new BattleRole(baseRole)
     }
+
+    def getBattleRoleByName(userName) {
+        def baseRole = baseRoleService.getBaseRoleByName(userName)
+        new BattleRole(baseRole)
+    }
 }
