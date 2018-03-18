@@ -1,4 +1,4 @@
-package gamediy.behavior.attack
+package gamediy
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(MagicAttackBehavior)
-class MagicAttackBehaviorSpec extends Specification {
+@TestFor(PayRecord)
+class PayRecordSpec extends Specification {
 
     def setup() {
     }
