@@ -6,9 +6,15 @@ class PayActionController {
 
     def payActionService
     def index() {
-        def result =  payActionService.payAction()
+        def result = payActionService.isActive()
         render result as JSON
     }
+
+    def pay() {
+        payActionService.payAction()
+    }
+
+
 
 
 }

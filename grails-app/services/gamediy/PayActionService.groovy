@@ -1,13 +1,8 @@
 package gamediy
 
-import grails.converters.JSON
 import grails.transaction.Transactional
 import groovy.json.JsonSlurper
 import groovyx.net.http.HttpBuilder
-import jdk.nashorn.internal.parser.JSONParser
-import org.grails.web.json.JSONObject
-
-import java.time.LocalDateTime
 
 @Transactional
 class PayActionService {
@@ -16,12 +11,24 @@ class PayActionService {
         request.uri = 'http://jspay.wiipay.cn/'
     }
 
-    def payAction() {
-        // TODO 验证请求身份
-
-        callApiToPay();
-
+    def isActive() {
         [resultType: "success"]
+    }
+
+    def payAction() {
+        userValidation() // 验证请求身份
+
+        callRecordSave() // 保存用户请求记录
+
+        callApiToPay()   // 调用支付接口
+    }
+
+    private void userValidation() {
+
+    }
+
+    private void callRecordSave() {
+
     }
 
     private void callApiToPay() {
@@ -49,7 +56,5 @@ class PayActionService {
                             total_fee: total_fee, version: version, sign: sign]
         }
         def resultObj = new JsonSlurper().parseText(result)
-
-
     }
 }
