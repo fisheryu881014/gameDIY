@@ -32,10 +32,12 @@ class PayActionService {
     }
 
     private void callApiToPay() {
-        String api_url = "/1/jspay/ali/ali_api.do" // 接口url
+//        String api_url = "/1/jspay/ali/ali_api.do" // 接口url
+        String api_url = "/1/jspay/qq/qq_api.do" // 接口url
         String api_key = "im8jvs8unejblx277a5cyendm6usx6iz" // 秘钥(key)
 
-        String app_id = "d84511ccd85d7162479bc0144c58df39" // 需提供
+//        String app_id = "d84511ccd85d7162479bc0144c58df39" // 需提供
+        String app_id = "a0666fa64f77fdcd63c03e08f28535a1" // 需提供
         String body = "测试支付" // 应该是传入的
         String callback_url = "http://www.baidu.com" // 回调地址
         String channel_id = "default"
