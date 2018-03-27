@@ -15,12 +15,10 @@ class PayActionService {
         [resultType: "success"]
     }
 
-    def payAction() {
+    def payAction(String api_url, String app_id, String body, String total_fee, String out_trade_no) {
         userValidation() // 验证请求身份
-
         callRecordSave() // 保存用户请求记录
-
-        callApiToPay()   // 调用支付接口
+        callApiToPay(api_url, app_id, body, total_fee, out_trade_no)   // 调用支付接口
     }
 
     private void userValidation() {
@@ -31,21 +29,13 @@ class PayActionService {
 
     }
 
-    private void callApiToPay() {
-//        String api_url = "/1/jspay/ali/ali_api.do" // 接口url
-        String api_url = "/1/jspay/qq/qq_api.do" // 接口url
-        String api_key = "im8jvs8unejblx277a5cyendm6usx6iz" // 秘钥(key)
+    String api_key = "im8jvs8unejblx277a5cyendm6usx6iz"
+    String callback_url = "http://www.baidu.com"
+    String channel_id = "default"
+    String format = "json"
+    String version = "2.0"
 
-//        String app_id = "d84511ccd85d7162479bc0144c58df39" // 需提供
-        String app_id = "a0666fa64f77fdcd63c03e08f28535a1" // 需提供
-        String body = "测试支付" // 应该是传入的
-        String callback_url = "http://www.baidu.com" // 回调地址
-        String channel_id = "default"
-        String format = "json"
-        String out_trade_no = String.valueOf(System.currentTimeMillis())
-        String total_fee = "1.00"
-        String version = "2.0"
-
+    private void callApiToPay(String api_url, String app_id, String body, String total_fee, String out_trade_no) {
         String sign_prep = String.format("app_id=%s&body=%s&callback_url=%s&channel_id=%s&format=%s&out_trade_no=%s&total_fee=%s&version=%s%s",
                 app_id, body, callback_url, channel_id, format, out_trade_no, total_fee, version, api_key)
         String sign = sign_prep.encodeAsMD5().toString().toUpperCase()
@@ -58,5 +48,9 @@ class PayActionService {
                             total_fee: total_fee, version: version, sign: sign]
         }
         def resultObj = new JsonSlurper().parseText(result)
+    }
+
+    def generateTradeNo(String type) {
+        String.format("%s_%s", type, String.valueOf(System.currentTimeMillis()))
     }
 }
