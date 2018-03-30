@@ -12,7 +12,7 @@ class PayActionController {
     }
 
     def pay(String body, String fee, String type) {
-        type = type ?: "defualt"
+        type = type ?: "default"
         switch (type.toUpperCase()) {
             case "QQ":
                 redirect url: qqPayActionService.payAction(body, fee)
