@@ -1,39 +1,19 @@
 package gamediy
 
-import java.time.LocalDateTime
-
 class PayRecord {
 
     static constraints = {
     }
 
-    Integer id
+//    Integer id
     String body
     String fee
-    String type
+//    PayType type
     String tradeNo
-    Client client
+//    Client client
 
+    Date dateCreated
+    Date lastUpdated
 
-}
-
-class Client {
-    Integer id
-    String name
-    String description
-    String key
-    String license
-    Boolean action
-}
-
-class PayType {
-    Integer id
-    String name
-    Boolean working
-}
-
-class TypeRecord {
-    Integer id
-    String action
-    LocalDateTime time
+    static belongsTo = [payType: PayType, client: Client]
 }

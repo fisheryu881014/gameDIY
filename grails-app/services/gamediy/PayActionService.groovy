@@ -47,7 +47,9 @@ class PayActionService {
                             channel_id: channel_id, format: format, out_trade_no: out_trade_no,
                             total_fee: total_fee, version: version, sign: sign]
         }
-        def resultObj = new JsonSlurper().parseText(result)
+
+        result
+//        def resultObj = new JsonSlurper().parseText(result)
     }
 
     def generateTradeNo(String type) {
