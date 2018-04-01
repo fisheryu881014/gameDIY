@@ -1,5 +1,6 @@
 package gamediy
 
+import grails.core.GrailsApplication
 import grails.transaction.Transactional
 import groovy.json.JsonSlurper
 import groovyx.net.http.HttpBuilder
@@ -29,13 +30,15 @@ class PayActionService {
 
     }
 
+    GrailsApplication grailsApplication
     String api_key = "im8jvs8unejblx277a5cyendm6usx6iz"
-    String callback_url = "http://www.baidu.com"
+//    String callback_url = grailsApplication.config.getProperty("host.url")
     String channel_id = "default"
     String format = "json"
     String version = "2.0"
 
     private void callApiToPay(String api_url, String app_id, String body, String total_fee, String out_trade_no) {
+        String callback_url = grailsApplication.config.getProperty("host.url")
         String sign_prep = String.format("app_id=%s&body=%s&callback_url=%s&channel_id=%s&format=%s&out_trade_no=%s&total_fee=%s&version=%s%s",
                 app_id, body, callback_url, channel_id, format, out_trade_no, total_fee, version, api_key)
         String sign = sign_prep.encodeAsMD5().toString().toUpperCase()
