@@ -48,11 +48,28 @@ class PayActionService {
                             total_fee: total_fee, version: version, sign: sign]
         }
 
-        result
+          result
 //        def resultObj = new JsonSlurper().parseText(result)
     }
 
     def generateTradeNo(String type) {
         String.format("%s_%s", type, String.valueOf(System.currentTimeMillis()))
+    }
+
+    def syncSignCheck(String orderNo, String synType, String status, String price, String time, String cpparam, String sign) {
+        String signCheck = String.format("cpparam=%s&orderNo=%s&price=%s&status=%s&synType=%s&time=%s%s",
+                cpparam, orderNo, price, status, synType, time, api_key).encodeAsMD5().toString().toUpperCase()
+        signCheck == sign
+    }
+
+    def doSync(String orderNo, String synType, String status, String price, String time, String cpparam) {
+        PayRecord payRecord = PayRecord.findByTradeNo(cpparam)
+        payRecord.backDate = time
+        payRecord.orderNo = orderNo
+        payRecord.backFee = price
+        payRecord.backStatus = status
+        payRecord.backType = synType
+
+        payRecord.save()
     }
 }

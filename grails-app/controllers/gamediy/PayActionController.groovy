@@ -26,6 +26,15 @@ class PayActionController {
 //        payActionService.payAction()
     }
 
+    def sync(String orderNo, String synType, String status, String price, String time, String cpparam, String sign) {
+        if (payActionService.syncSignCheck(orderNo, synType, status, price, time, cpparam, sign)) {
+            payActionService.doSync(orderNo, synType, status, price, time, cpparam)
+            render "success"
+        } else {
+            render "failed"
+        }
+    }
+
 
 
 

@@ -27,8 +27,7 @@ class QqPayActionService {
 
         // 支付记录生成
         PayRecord record = new PayRecord(body:body, fee: fee, payType: payType, tradeNo: out_trade_no, client: client)
-//        record.save()
-        record.save(flush: true)
+        record.save()
 
         payActionService.payAction(api_url, app_id, body, fee, out_trade_no)
     }
