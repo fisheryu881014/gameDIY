@@ -9,7 +9,7 @@ class QqPayActionService {
     String app_id = "a0666fa64f77fdcd63c03e08f28535a1"
 
     def payActionService
-    def payAction(String body, String fee, String userKey, String userLicense) {
+    def payAction(String body, String fee, String userKey, String userLicense, String callbackUrl) {
         // 用户验证
         Client client = Client.findByKey(userKey)
         if (!client || userLicense != client.license) {
@@ -29,6 +29,6 @@ class QqPayActionService {
         PayRecord record = new PayRecord(body:body, fee: fee, payType: payType, tradeNo: out_trade_no, client: client)
         record.save()
 
-        payActionService.payAction(api_url, app_id, body, fee, out_trade_no)
+        payActionService.payAction(api_url, app_id, body, fee, out_trade_no, callbackUrl)
     }
 }
