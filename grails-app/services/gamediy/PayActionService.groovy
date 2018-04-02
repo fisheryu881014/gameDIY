@@ -37,7 +37,7 @@ class PayActionService {
     String format = "json"
     String version = "2.0"
 
-    private void callApiToPay(String api_url, String app_id, String body, String total_fee, String out_trade_no) {
+    private String callApiToPay(String api_url, String app_id, String body, String total_fee, String out_trade_no) {
         String callback_url = grailsApplication.config.getProperty("host.url")
         String sign_prep = String.format("app_id=%s&body=%s&callback_url=%s&channel_id=%s&format=%s&out_trade_no=%s&total_fee=%s&version=%s%s",
                 app_id, body, callback_url, channel_id, format, out_trade_no, total_fee, version, api_key)
@@ -51,8 +51,11 @@ class PayActionService {
                             total_fee: total_fee, version: version, sign: sign]
         }
 
-          result
-//        def resultObj = new JsonSlurper().parseText(result)
+        if (result.endsWith("state=success}")) {
+            return result.split(",").find {it.startsWith(" pay_url")}.split("=", 2)[1]
+        } else {
+            return  result.split(",").find {it.startsWith(" ret_msg")}.split("=", 2)[1]
+        }
     }
 
     def generateTradeNo(String type) {
