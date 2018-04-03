@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class AliPayActionService {
 
     def getApiUrl() {
-        "/1/jspay/wx/wx_api.do" // todo
+        "/1/jspay/ali/ali_api.do"
     }
     def getType() {
         "ALI"

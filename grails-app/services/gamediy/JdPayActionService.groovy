@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class JdPayActionService {
 
     def getApiUrl() {
-        "/1/jspay/wx/wx_api.do" // todo
+        "/1/jspay/jd/jd_api.do"
     }
     def getType() {
         "JD"

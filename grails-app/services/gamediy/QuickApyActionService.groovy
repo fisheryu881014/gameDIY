@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class QuickApyActionService {
 
     def getApiUrl() {
-        "/1/jspay/wx/wx_api.do"
+        "/1/jspay/un/un_api.do"
     }
     def getType() {
         "QUICK"

@@ -33,9 +33,9 @@ class PayActionController {
             case "JD":
                 typeActionService = jdPayActionService
                 break
-            case "VISA":
-                typeActionService = visaPayActionService
-                break
+//            case "VISA":
+//                typeActionService = visaPayActionService
+//                break
             case "QUICK":
                 typeActionService = quickPayActionService
                 break
@@ -61,7 +61,16 @@ class PayActionController {
         }
     }
 
-
+    def payFailed(String result) {
+        String message = "身份验证失败"
+        if (result == "payType") {
+            message = "支付类型错误或暂不可用"
+//            render [messege: "支付类型错误或暂不可用"] as JSON
+//        } else {
+//            render [message: "身份验证失败"] as JSON
+        }
+        [message: message] as JSON
+    }
 
 
 }

@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class VisaPayActionService {
 
     def getApiUrl() {
-        "/1/jspay/wx/wx_api.do" // todo
+        "/1/jspay/un/un_api.do" // todo
     }
     def getType() {
         "VISA"
