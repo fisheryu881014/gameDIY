@@ -6,6 +6,12 @@ class PayActionController {
 
     def payActionService
     def qqPayActionService
+    def wxPayActionService
+    def aliPayActionService
+    def jdPayActionService
+    def visaPayActionService
+    def quickPayActionService
+
     def index() {
         def result = payActionService.isActive()
         render result as JSON
@@ -13,17 +19,37 @@ class PayActionController {
 
     def pay(String body, String fee, String type, String key, String license, String callbackUrl) {
         type = type ?: "default"
+        def typeActionService = null
         switch (type.toUpperCase()) {
             case "QQ":
-                // http://localhost:8080/payAction/pay?body=%E6%B5%8B%E8%AF%95&fee=1.00&type=qq&key=1a2b3c&license=9a2bea00cd59cb18fc0d0ca3ebcfe451
-                redirect url: qqPayActionService.payAction(body, fee, key, license, callbackUrl)
+                typeActionService = qqPayActionService
+                break
+            case "WX":
+                typeActionService = wxPayActionService
+                break
+            case "ALI":
+                typeActionService = aliPayActionService
+                break
+            case "JD":
+                typeActionService = jdPayActionService
+                break
+            case "VISA":
+                typeActionService = visaPayActionService
+                break
+            case "QUICK":
+                typeActionService = quickPayActionService
                 break
             default:
-                redirect url: "http://www.baidu.com"
                 break
-
         }
-//        payActionService.payAction()
+        if (!typeActionService) {
+            redirect url: "/failed/to/pay?result=payType"
+        }
+        try {
+            redirect url: payActionService.payAction(body, fee, key, license, callbackUrl, typeActionService)
+        } catch (Exception e) {
+            redirect url: "/failed/to/pay?result=${e.getMessage()}"
+        }
     }
 
     def sync(String orderNo, String synType, String status, String price, String time, String cpparam, String sign) {
