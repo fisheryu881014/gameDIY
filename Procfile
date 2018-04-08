@@ -1,1 +1,1 @@
-web: grails run-app
+web: run-app
