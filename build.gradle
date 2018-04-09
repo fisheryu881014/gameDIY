@@ -77,10 +77,7 @@ mainClassName = 'gamediy.Application'
 
 jar {
     manifest {
-        attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'gamediy.Application'
-        )
+        attributes 'Main-Class': 'gamediy.Application'
     }
 }
 
