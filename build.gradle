@@ -23,6 +23,14 @@ apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'gamediy.Application'
+        )
+    }
+}
+
 ext {
     grailsVersion = project.grailsVersion
     gradleWrapperVersion = project.gradleWrapperVersion
