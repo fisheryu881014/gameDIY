@@ -61,6 +61,8 @@ dependencies {
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+
+    provided "org.springframework.boot:spring-boot-starter-tomcat"
 }
 
 assets {
