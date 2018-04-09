@@ -1,1 +1,1 @@
-web: cd build/libs; ls -l;
+web: java -Dgrails.env=prod -jar build/libs/*-0.1.war
