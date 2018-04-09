@@ -1,1 +1,1 @@
-web: java -Dgrails.env=prod -jar build/libs/gameDIY-0.1.war
+web: ll; java -Dgrails.env=prod -jar build/libs/gameDIY-0.1.war
