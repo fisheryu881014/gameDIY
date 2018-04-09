@@ -11,6 +11,15 @@ buildscript {
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
         classpath "org.grails.plugins:hibernate4:5.0.10"
     }
+
+    jar {
+        manifest {
+            attributes(
+                    'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                    'Main-Class': 'gamediy.Application'
+            )
+        }
+    }
 }
 
 version "0.1"
@@ -68,15 +77,6 @@ dependencies {
 assets {
     minifyJs = true
     minifyCss = true
-}
-
-jar {
-    manifest {
-        attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'gamediy.Application'
-        )
-    }
 }
 
 task wrapper(type: Wrapper) {
