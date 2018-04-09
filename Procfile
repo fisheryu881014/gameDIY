@@ -1,1 +1,1 @@
-web: ls -l; cd build; cd libs; ls -l; java -Dgrails.env=prod -jar build/libs/gameDIY-0.1.war
+web: cd build/libs; ls -l;
