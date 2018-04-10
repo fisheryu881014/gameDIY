@@ -70,11 +70,11 @@ assets {
     minifyCss = true
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'gamediy.Application'
-    }
-}
+//jar {
+//    manifest {
+//        attributes 'Main-Class': 'gamediy.Application'
+//    }
+//}
 
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
