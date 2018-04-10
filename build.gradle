@@ -81,7 +81,7 @@ task wrapper(type: Wrapper) {
 }
 
 task stage() {
-    dependsOn clean, war
+    dependsOn clean, build, war
 }
 war.mustRunAfter clean
 
