@@ -64,6 +64,7 @@ dependencies {
 
     provided "org.springframework.boot:spring-boot-starter-tomcat"
     compile 'com.github.jsimone:webapp-runner:8.5.11.3'
+    runtime 'postgresql:postgresql:8.4-702.jdbc3'
 }
 
 assets {
