@@ -26,7 +26,7 @@ environments:
         dataSource:
             driverClassName: org.postgresql.Driver
             dbCreate: update
-            url: jdbc:postgres://otinbnbqiqetxz:cfefa9f1c90cf0d6415e2e3dede14c50a3b9d0de0a34a331e2b2a668a1df2c3d@ec2-54-235-193-34.compute-1.amazonaws.com:5432/dffdigdjb0jmuu
+            url: jdbc:postgresql://otinbnbqiqetxz:cfefa9f1c90cf0d6415e2e3dede14c50a3b9d0de0a34a331e2b2a668a1df2c3d@ec2-54-235-193-34.compute-1.amazonaws.com:5432/dffdigdjb0jmuu
             properties:
                 jmxEnabled: true
                 initialSize: 5
