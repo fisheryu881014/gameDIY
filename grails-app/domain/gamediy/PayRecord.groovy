@@ -2,7 +2,6 @@ package gamediy
 
 import javax.persistence.Entity
 
-@Entity
 class PayRecord {
 
     static constraints = {

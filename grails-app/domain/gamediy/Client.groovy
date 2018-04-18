@@ -1,16 +1,11 @@
 package gamediy
 
-import javax.persistence.Entity
-import javax.persistence.Id
-
-@Entity
 class Client {
 
     static constraints = {
     }
 
-    @Id
-    Integer id
+//    Integer id
     // 用户名
     String name
     // 描述
